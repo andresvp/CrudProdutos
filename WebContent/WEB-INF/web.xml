@@ -7,6 +7,15 @@
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>listProduct.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <servlet-name>ControllerServlet</servlet-name>
+    <servlet-class>br.andressavieira.servlet.ControllerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/ControllerServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
