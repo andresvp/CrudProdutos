@@ -19,9 +19,18 @@ public class Product {
 		
 	}
 	
-	public Product(String description, String image, double price, String origin, CategoryEnum category ){
+	public Product(String description,Date datePurchase, String image, double price, String origin ){
 		setDescription(description);
-		//setDatapurchase(datePurchase);
+		setDatePurchase(datePurchase);
+		setImage(image);
+		setPrice(price);
+		setOrigin(origin);
+		setCategory(category);
+	}
+	
+	public Product(String description, Date datePurchase, String image, double price, String origin, CategoryEnum category ){
+		setDescription(description);
+		setDatePurchase(datePurchase);
 		setImage(image);
 		setPrice(price);
 		setOrigin(origin);

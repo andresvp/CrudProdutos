@@ -24,12 +24,16 @@
     				<jsp:useBean id="dao" class="br.andressavieira.dao.ProductDAO"/>
 	    				<c:forEach var="product" items="${dao.list}">
 	    					${product.description}
+	    					${product.datePurchase}
 	    					${product.image}
 	    					${product.price}
 	    					${product.origin}
-	    					${product.category }
+	    					<!--${product.category.getValue()} -->
 	    				</c:forEach>
     			</div>
+    			<div class="form-group">
+				    	<a href="registerProduct.jsp">Cadastrar Produtos</a>
+				    </div>
     		</div>
     	</div>
     </div>

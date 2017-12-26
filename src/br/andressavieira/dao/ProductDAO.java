@@ -1,9 +1,11 @@
 package br.andressavieira.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import br.andressavieira.bean.CategoryEnum;
 import br.andressavieira.bean.Product;
 import br.andressavieira.factory.FactoryCon;
@@ -17,18 +19,24 @@ public class ProductDAO {
 		Connection conn = FactoryCon.openConnection();
 		if(conn != null){
 			try {
-				
+				PreparedStatement instruction = conn.prepareStatement(ConstantesDAO.AddProducts);
+				instruction.setString(1, product.getDescription());
+				instruction.setDate(2, new java.sql.Date(product.getDatePurchase().getTime()));
+				instruction.setString(3, product.getImage());
+				instruction.setDouble(4, product.getPrice());
+				instruction.setString(5, product.getOrigin());
+				instruction.setString(6, product.getCategory().toString());
+				instruction.execute();
+				FactoryCon.closeConnection(conn);
+				return true;
 			} catch (Exception e) {
-				// TODO: handle exception
+				e.printStackTrace();
 			}
 		}
 		
 		return false;
 	}
 	
-	public static void addProduct(ArrayList<Product> products){
-		
-	}
 
 	//Funcionalidade para listar os produtos.
 	public static ArrayList<Product> list() {
@@ -40,10 +48,11 @@ public class ProductDAO {
 				ResultSet rs = stmt.executeQuery(ConstantesDAO.ListProducts);
 				while (rs.next()) {
 					product.add(new Product( rs.getString("description"),
+							rs.getDate("datePurchase"),
 							rs.getString("image"),
 							Double.parseDouble(rs.getString("price")),
-							rs.getString("origin"),
-							CategoryEnum.valueOf(rs.getString("category"))
+							rs.getString("origin")
+							//CategoryEnum.valueOf(rs.getString("category"))
 							));
 				}
 				stmt.close();

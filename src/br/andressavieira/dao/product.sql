@@ -6,7 +6,7 @@ use CrudProduct;
 create table product(
 	id int NOT NULL AUTO_INCREMENT,
 	description varchar(300),
-	dataPurchase date,
+	datePurchase date,
 	image varchar(500),
 	price double,
 	origin varchar(50),
