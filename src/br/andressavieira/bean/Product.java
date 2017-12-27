@@ -1,5 +1,6 @@
 package br.andressavieira.bean;
 
+import java.text.NumberFormat;
 import java.util.Date;
 
 import br.andressavieira.bean.CategoryEnum;
@@ -14,6 +15,13 @@ public class Product {
 	private String origin;
 	private CategoryEnum category;
 	
+	public double convertDolar(){
+		double result = this.price/3.599;
+		NumberFormat format = NumberFormat.getInstance();
+		format.setMaximumFractionDigits(3);
+		result = Double.valueOf(format.format(result));
+		return result;	
+	}
 	
 	public Product(){
 		
@@ -37,7 +45,23 @@ public class Product {
 		setCategory(category);
 	}
 	
+	public Product(int id,String description, Date datePurchase, String image, double price, String origin, CategoryEnum category ){
+		setId(id);
+		setDescription(description);
+		setDatePurchase(datePurchase);
+		setImage(image);
+		setPrice(price);
+		setOrigin(origin);
+		setCategory(category);
+	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Product [category=" + category + "]";
+	}
+
 	public int getId() {
 		return id;
 	}

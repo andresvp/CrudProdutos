@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta charset="utf-8">
+ <head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -20,32 +21,38 @@
     		<div class="col-md-8">
 				<h1>Register Product</h1>
 				<br />
-				<form method="post" action="ControllerServlet">
+				<form method="post" action="ControllerServlet" >
+				
+				<input type="hidden" id="id "name="id" value=" <c:out value="${product.id}"/> "/> 
+					
 					<div class="form-group">
                     	<label for="description" class="col-sm-2 control-label">Description:</label>
 				        	<textarea class="form-control" id="description" rows="2"
-                            		  name="description">
-                            </textarea>
+                            		  name="description" ><c:out value="${product.description}"/></textarea>
                     </div>
 					
                     <div class="form-group">
                     	<label for="datePurchase" class="col-sm-2 control-label">DatePurchase:</label>
 				        	<input type="date" class="form-control" id="dataPurchase"
-                            		  name="datePurchase" placeholder="Enter the date purchase"/>
+                            		  name="datePurchase" value=" <c:out value="${product.datePurchase}"/> "/>
                     </div>
                     
                     <div class="form-group">
                     	<label for="price" class="col-sm-2 control-label">Price:</label>
 				        	<input type="number" class="form-control" id="price"
-                            		  name="price"/>
+                            		  name="price" value=" <c:out value="${product.price}"/> "/>
                     </div>
                     
                     <div class="form-group">
-                    	<label for="origin" class="col-sm-2 control-label">Origin:</label>
-		                    <label class="form-control">
-		      					<input type="radio" name="origin" value="Nacional">National
-		      					<input type="radio" name="origin" value="Importado">Imported
-		    				</label>
+                    	<label for="origin">Origin:</label>
+	                    <div>
+			                    <label class="col-sm-2 control-label">
+			      					<input type="radio" name="origin" value="Nacional" /> National
+			      				</label>
+			      				<label>
+			      					<input type="radio" name="origin" value="Importado"/> Imported
+			    				</label>
+	                    </div>
                     </div>
                       
                     <div class="form-group">
@@ -61,17 +68,20 @@
 					</div>
                     
                     <label for="image">Image:</label>
-				        <input type="file" id="image" name="image"/>
+				        <input type="file" id="image" name="image" span=>
+				        <span class="fileinput-filename"><c:out value="${product.image}"/> </span>
 				    <br />
-				        
+				    <br />
+
 				    <div class="form-group">
-				    	<input type="submit" value="Cadastrar">
+				    	<button type="submit" value="cadastrar" class="btn btn-primary ">Cadastrar</button>
 				    </div>
-				    <div class="form-group">
-				    	<a href="listProduct.jsp">Listar Produtos</a>
-				    </div>
-				        
+
+				       
                 </form>
+                <div class="form-group">
+				    	<a class="btn btn-primary" href="listProduct.jsp" role="button">Listar Produtos</a>
+				    </div>
              </div>
              </div>
          </div>

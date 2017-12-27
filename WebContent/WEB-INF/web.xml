@@ -18,4 +18,29 @@
     <servlet-name>ControllerServlet</servlet-name>
     <url-pattern>/ControllerServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+     <servlet-name>DeleteProduct</servlet-name>
+     <servlet-class>br.andressavieira.servlet.DeleteProduct</servlet-class>
+ </servlet>
+ <servlet-mapping>
+     <servlet-name>DeleteProduct</servlet-name>
+     <url-pattern>/DeleteProduct</url-pattern>
+ </servlet-mapping>
+ <servlet>
+     <servlet-name>ProductsByCategory</servlet-name>
+     <servlet-class>br.andressavieira.servlet.ProductsByCategory</servlet-class>
+ </servlet>
+ <servlet-mapping>
+     <servlet-name>ProductsByCategory</servlet-name>
+     <url-pattern>/ProductsByCategory</url-pattern>
+ </servlet-mapping>
+  <servlet>
+     <servlet-name>UpdateProduct</servlet-name>
+     <servlet-class>br.andressavieira.servlet.UpdateProduct</servlet-class>
+ </servlet>
+ <servlet-mapping>
+     <servlet-name>UpdateProduct</servlet-name>
+     <url-pattern>/UpdateProduct</url-pattern>
+ </servlet-mapping>
+ 
 </web-app>

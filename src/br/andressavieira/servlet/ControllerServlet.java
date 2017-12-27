@@ -56,9 +56,11 @@ public class ControllerServlet extends HttpServlet {
 		String Sprice = req.getParameter("price");
 		String origin = req.getParameter("origin");
 		String Scategory = req.getParameter("category");
+		String Sid = req.getParameter("id");
 		boolean register = false;
 		
 		try{
+			int id = Integer.parseInt(Sid);
 			double price = Double.parseDouble(Sprice);
 			CategoryEnum category = CategoryEnum.valueOf(Scategory);
 			//Converto de String para Date
@@ -71,8 +73,13 @@ public class ControllerServlet extends HttpServlet {
 			//DateFormat formatterEua = new SimpleDateFormat("YYYY-MM-DD");
 			Date datePurchase = (Date) formatBD.parse(dateFomated);
 			
-			Product product = new Product(description,datePurchase,image,price,origin,category); 
-			register = ProductDAO.addProduct(product);
+			if (Sid.isEmpty() || Sid == null){
+				Product product = new Product(description,datePurchase,image,price,origin,category);
+				register = ProductDAO.addProduct(product);
+			}else{
+				Product product = new Product(id,description,datePurchase,image,price,origin,category); 
+				ProductDAO.update(product);
+			}
 		
 		}catch(Exception e){
 			e.printStackTrace();
