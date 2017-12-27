@@ -99,15 +99,32 @@ public class ProductDAO {
 	
 	
 	//Funcionalidade que lista os produtos de acordo com a categoria.
-	public static ArrayList<Product> listByCategory() {
-		ArrayList<Product> productByCategory = new ArrayList<Product>();
-		return productByCategory;
+	public static ArrayList<Product> listByCategory(CategoryEnum category) {
+		Connection conn = FactoryCon.openConnection();
+		ArrayList<Product> productsByCategory = new ArrayList<Product>();
+		if(conn != null){
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(ConstantesDAO.ListByCategory);
+				pstmt.setString(1, category.toString());
+				ResultSet rs = pstmt.executeQuery();
+				while (rs.next()) {
+					productsByCategory.add(new Product( rs.getInt("id"), 
+							rs.getString("description"),
+							rs.getDate("datePurchase"),
+							rs.getString("image"),
+							Double.parseDouble(rs.getString("price")),
+							rs.getString("origin"),
+							CategoryEnum.valueOf(rs.getString("category"))));
+				}
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return productsByCategory;
 	}
 	
-	
-	public ArrayList<Product> getListByCategory(){
-		return listByCategory();
-	}
 	
 	
 	//Funcionalidade para excluir produtos.

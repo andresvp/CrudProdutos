@@ -56,12 +56,16 @@
     			<a href="registerProduct.jsp">Cadastrar Produtos</a>
     			</div>
 		    	
-		    	<!-- 
-		    	<div class=form-group">
-	    			<label>Filtrar por: </label>
-	    				<a href="ProductsByCategory?action=ListByCategory&category=LIVROS" >Livros</a>
-	    		</div>
-	    		 -->
+		    	<div class="form-group">
+  						<label for="sel1">Filter by category:</label>
+							    <a href="ProductsByCategory?category=ELETRONICOS">ELETRONICOS</a>
+							    <a href="ProductsByCategory?category=LIVROS">LIVROS</a>
+							    <a href="ProductsByCategory?category=MUSICA">MUSICA</a>
+							    <a href="ProductsByCategory?category=ACESSORIOS">ACESSORIOS</a>
+							    <a href="ProductsByCategory?category=CELULARES">CELULARES</a>
+							    <a href="ProductsByCategory?category=OUTROS">OUTROS</a>
+					</div>
+		    	
     			
     		</div>
     	</div>
