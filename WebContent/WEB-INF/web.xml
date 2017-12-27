@@ -42,5 +42,13 @@
      <servlet-name>UpdateProduct</servlet-name>
      <url-pattern>/UpdateProduct</url-pattern>
  </servlet-mapping>
+  <servlet>
+     <servlet-name>AlterarProduct</servlet-name>
+     <servlet-class>br.andressavieira.servlet.AlterarProduct</servlet-class>
+ </servlet>
+ <servlet-mapping>
+     <servlet-name>AlterarProduct</servlet-name>
+     <url-pattern>/AlterarProduct</url-pattern>
+ </servlet-mapping>
  
 </web-app>

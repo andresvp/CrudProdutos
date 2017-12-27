@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
@@ -23,7 +24,7 @@
 				<br />
 				<form method="post" action="ControllerServlet" >
 				
-				<input type="hidden" id="id "name="id" value=" <c:out value="${product.id}"/> "/> 
+				<input type="hidden" id="id "name="id" value="<c:out value="${product.id}"/>"/> 
 					
 					<div class="form-group">
                     	<label for="description" class="col-sm-2 control-label">Description:</label>
@@ -33,8 +34,8 @@
 					
                     <div class="form-group">
                     	<label for="datePurchase" class="col-sm-2 control-label">DatePurchase:</label>
-				        	<input type="date" class="form-control" id="dataPurchase"
-                            		  name="datePurchase" value=" <c:out value="${product.datePurchase}"/> "/>
+				        	<input type="date" name="datePurchase" class="form-control" id="dataPurchase"
+                            	   value="<fmt:formatDate pattern="DD/MM/YYYY" value="${product.datePurchase}" />" />
                     </div>
                     
                     <div class="form-group">
@@ -47,10 +48,12 @@
                     	<label for="origin">Origin:</label>
 	                    <div>
 			                    <label class="col-sm-2 control-label">
-			      					<input type="radio" name="origin" value="Nacional" /> National
+			      					<input type="radio" name="origin" value="Nacional" <c:out value="${product.origin == 'Nacional' ? 'checked': ''}"/>/> 
+			      					National
 			      				</label>
 			      				<label>
-			      					<input type="radio" name="origin" value="Importado"/> Imported
+			      					<input type="radio" name="origin" value="Importado" <c:out value="${product.origin == 'Importado' ? 'checked': ''}"/>/> 
+			      					Imported
 			    				</label>
 	                    </div>
                     </div>
@@ -58,12 +61,18 @@
                     <div class="form-group">
   						<label for="sel1">Select category:</label>
 		  					<select class="form-control" id="category" name="category" >
-		    					<option value="ELETRONICO">Eletrônicos</option>
-							    <option value="LIVROS">Livros</option>
-							    <option value="MUSICA">Música</option>
-							    <option value="ACESSORIOS">Acessórios</option>
-							    <option value="CELULARES">Celulares</option>
-							    <option value="OUTROS">Outros</option>
+		    					<option value="ELETRONICO" <c:out value="${product.category.getValue() == 'Eletrônicos' ? 'selected': ''}"/>>
+		    					Eletrônicos</option>
+							    <option value="LIVROS" <c:out value="${product.category.getValue() == 'Livros' ? 'selected': ''}"/>>
+							    Livros</option>
+							    <option value="MUSICA" <c:out value="${product.category.getValue() == 'Música' ? 'selected': ''}"/>>
+							    Música</option>
+							    <option value="ACESSORIOS" <c:out value="${product.category.getValue() == 'Acessórios' ? 'selected': ''}"/>>
+							    Acessórios</option>
+							    <option value="CELULARES" <c:out value="${product.category.getValue() == 'Celulares' ? 'selected': ''}"/>>
+							    Celulares</option>
+							    <option value="OUTROS" <c:out value="${product.category.getValue() == 'Outros' ? 'selected': ''}"/>>
+							    Outros</option>
 		  					</select>
 					</div>
                     
@@ -74,13 +83,12 @@
 				    <br />
 
 				    <div class="form-group">
-				    	<button type="submit" value="cadastrar" class="btn btn-primary ">Cadastrar</button>
+				    	<button type="submit" value="cadastrar" class="btn btn-primary">Cadastrar</button>
 				    </div>
-
-				       
+				    
                 </form>
                 <div class="form-group">
-				    	<a class="btn btn-primary" href="listProduct.jsp" role="button">Listar Produtos</a>
+				    	<a class="btn btn-primary" href="listProduct.jsp" role="button" >Listar Produtos</a>
 				    </div>
              </div>
              </div>

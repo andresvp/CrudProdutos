@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.lang.Integer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.andressavieira.bean.CategoryEnum;
 import br.andressavieira.bean.Product;
 import br.andressavieira.dao.ProductDAO;
+
 
 
 
@@ -60,7 +62,6 @@ public class ControllerServlet extends HttpServlet {
 		boolean register = false;
 		
 		try{
-			int id = Integer.parseInt(Sid);
 			double price = Double.parseDouble(Sprice);
 			CategoryEnum category = CategoryEnum.valueOf(Scategory);
 			//Converto de String para Date
@@ -73,10 +74,11 @@ public class ControllerServlet extends HttpServlet {
 			//DateFormat formatterEua = new SimpleDateFormat("YYYY-MM-DD");
 			Date datePurchase = (Date) formatBD.parse(dateFomated);
 			
-			if (Sid.isEmpty() || Sid == null){
+			if (Sid.isEmpty() && Sid.equals("")){
 				Product product = new Product(description,datePurchase,image,price,origin,category);
 				register = ProductDAO.addProduct(product);
 			}else{
+				int id = Integer.parseInt(Sid);
 				Product product = new Product(id,description,datePurchase,image,price,origin,category); 
 				ProductDAO.update(product);
 			}
